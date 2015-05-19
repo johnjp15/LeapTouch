@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script src="http://js.leapmotion.com/leap-0.6.4.min.js"></script>
+	<!--
+	<script src="js/calibration.js"></script>
+	<script src="js/calculations.js"></script>
+-->
+
+<script src="js/index.js"></script>
+
+<title>Javascript Dot Test</title>
+
+<script type="text/javascript">
+
+	function setDotPosition(x_ratio, y_ratio)	{
+
+		var dot = document.getElementById("dot");
+		dot.style.top = (y_ratio * 100) + "%";
+		dot.style.left = (x_ratio * 100) + "%";
+	}
+	function updateDotPosition()	{
+		var x_ratio = constant[0];
+		var y_ratio = constant[1];
+		setDotPosition(x_ratio, y_ratio);
+	}
+
+	function start()	{
+		var timer = window.setInterval(function()	{
+			if(position && plane){
+				updateDotPosition();
+			}
+		}, 20);
+	}
+	
+</script>
+<style>
+	#dot	{
+		position: absolute;
+		top: 50%;
+		left: 20%;
+
+		width: 10px;
+		height: 10px;
+		border-radius: 10px;
+		background: #00ff00;
+	}
+</style>
+</head>
+<body>
+	<h3>Current Pointable Location:</h3>
+	<div id="currentPointable"></div>
+	<h3>Top Left of Region:</h3>
+	<div id="topLeft"></div>
+	<h3>Top Right of Region:</h3>
+	<div id="topRight"></div>
+	<h3>Bottom Right of Region:</h3>
+	<div id="botRight"></div>
+	<h3>Bottom Left of Region:</h3>
+	<div id="botLeft"></div>
+	<h3>Distance to Plane:</h3>
+	<div id="distToPlane"></div>
+	<div id="distFormula">Distance Formula: </div>
+	<h3>Normal</h3>
+	<div id="norm"></div>
+	<h3>Touching the Plane:</h3>
+	<div id="touch"></div>
+	<h3>Point on Plane:</h3>
+	<div id="point"></div>
+	<h3>c1 and c2</h3>
+	<div id="constants"></div>
+
+	<div id="dot" onclick="start();"></div>
+</body>
+</html>
